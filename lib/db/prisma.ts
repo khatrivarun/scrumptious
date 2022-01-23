@@ -1,2 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-export const prisma = new PrismaClient();
+
+let prisma: PrismaClient;
+
+if (!global.prisma) {
+  global.prisma = new PrismaClient({
+    log: ['info'],
+  });
+}
+prisma = global.prisma;
+
+export default prisma;
